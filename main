@@ -1,0 +1,81 @@
+
+import java.util.*; // Import statement to use scanner class
+import java.io.*;// wildcard
+import java.util.ArrayDeque;
+
+
+public class Nobles_JAN_P4
+{
+   public static void main(String[] args)
+   
+      {
+     Scanner keyboard = new Scanner (System.in); 
+     ArrayDeque<String> queue = new ArrayDeque();
+     Stack<String> stack = new Stack<>();
+     int palindrome = 0;
+     int nonPalindrome = 0;
+     
+     System.out.println(" ");
+     String word = " ";
+     Scanner scanner = new Scanner(System.in);
+     
+     do 
+     {
+     
+       System.out.println("Enter in names, type done when finish.");
+       String names = keyboard.nextLine();
+  
+       while (scanner.hasNext()) 
+            {
+              word = scanner.next();
+              if (word.equalsIgnoreCase("DONE")) 
+               
+                  break;
+                
+                else 
+                {
+                    stack.push(word);
+                    queue.add(word);
+                }
+            }
+            
+            String sentence = " ";
+            boolean flag = false;
+            
+            while (!queue.isEmpty() && !stack.isEmpty()) 
+            {
+                sentence += stack.peek() + " ";
+                if (!queue.getFirst().equals(stack.peek())) 
+                
+                    flag = true;
+                
+                queue.removeFirst();
+                stack.pop();
+            }
+            if (flag) 
+            {
+                System.out.println(sentence + " This isn't a Palindrome");
+                nonPalindrome += 1;
+            } 
+            else 
+            {
+                System.out.println(sentence + "- This is a Palindrome");
+                palindrome += 1;
+            }
+
+            System.out.print("You want to check another sequence ? (Yes or No): ");
+            word = scanner.next();
+        } 
+        while (word.equalsIgnoreCase("Yes")||word.equalsIgnoreCase("Y") );
+
+        System.out.println("You have run "+(palindrome+nonPalindrome)+" tests:");
+        System.out.println(palindrome+" is palindrome and "+nonPalindrome+" is NOT palindrome.");
+        
+
+         }
+
+
+       }
+
+     
+         
